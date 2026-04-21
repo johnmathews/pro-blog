@@ -39,60 +39,28 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     homeBrewAnalytics(router.asPath)
-  }, [router])
+  }, [router.asPath])
 
-  // navigator.sendBeacon('https://us-central1-johnmathews-website.cloudfunctions.net/page_view_logger?path='+window.location.pathname)
-  if (router.asPath == '/') {
-    // landing page only
-    return (
-      <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
-        <Head>
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-        </Head>
-        {isDevelopment && isSocket && <ClientReload />}
-        <Analytics />
-        <ContextProvider>
+  const isLandingPage = router.asPath === '/' || router.asPath.startsWith('/?')
+
+  return (
+    <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+      <Head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+      </Head>
+      {isDevelopment && isSocket && <ClientReload />}
+      <Analytics />
+      <ContextProvider>
+        {isLandingPage ? (
           <Component {...pageProps} />
-          <Modal />
-          <KeyboardShortcuts />
-        </ContextProvider>
-      </ThemeProvider>
-    )
-  } else if (router.query.slug !== undefined) {
-    // blog posts only
-    return (
-      <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
-        <Head>
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-        </Head>
-        {isDevelopment && isSocket && <ClientReload />}
-        <Analytics />
-        <ContextProvider>
+        ) : (
           <LayoutWrapper>
             <Component {...pageProps} />
           </LayoutWrapper>
-          <Modal />
-          <KeyboardShortcuts />
-        </ContextProvider>
-      </ThemeProvider>
-    )
-  } else {
-    // everything else (e.g. /about, list of blog posts, categories, tags)
-    return (
-      <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
-        <Head>
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-        </Head>
-        {isDevelopment && isSocket && <ClientReload />}
-        <Analytics />
-        <ContextProvider>
-          <LayoutWrapper>
-            <Component {...pageProps} />
-          </LayoutWrapper>
-          <Modal />
-          <KeyboardShortcuts />
-        </ContextProvider>
-      </ThemeProvider>
-    )
-  }
+        )}
+        <Modal />
+        <KeyboardShortcuts />
+      </ContextProvider>
+    </ThemeProvider>
+  )
 }

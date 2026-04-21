@@ -4,7 +4,6 @@ import { useEffect } from 'react'
 import Link from '@/components/Link'
 import PageTitle from '@/components/PageTitle'
 import { BlogSEO } from '@/components/SEO'
-import path from 'path'
 import Image from '@/components/Image'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTop from '@/components/ScrollTop'
@@ -55,7 +54,7 @@ export default function PostLayout({ frontMatter, authorDetails, children }) {
 
   function getContent(frontMatter, children) {
     if (frontMatter.isNotebook) {
-      const notebookPath = path.join(`/notebooks/${frontMatter.slug}.ipynb`)
+      const notebookPath = `/notebooks/${frontMatter.slug}.ipynb`
       return (
         <div id="notebookWrapper" className="">
           <Notebook

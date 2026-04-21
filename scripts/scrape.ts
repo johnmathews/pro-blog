@@ -271,25 +271,15 @@ const chunkBlogPost = async (webPage: BlogArticle) => {
     blogPosts.push(chunkedWebPage)
   }
 
-  // blog posts with these words in the title wont be crawled
-  let skipTheseBlogPosts = ['peter', 'proverbs', 'jesus']
-
   console.log('scraping blog posts..\n')
   for (let i = 0; i < links.length; i++) {
-    const lowerTitle = links[i].title.toLowerCase()
-
-    // Skip if title contains any word in skipTheseBlogPosts
-    if (skipTheseBlogPosts.some((badWord) => lowerTitle.includes(badWord))) {
-      continue
-    }
-
     const blogPost = await getBlogPost(links[i])
     const chunkedBlogPost = await chunkBlogPost(blogPost)
     blogPosts.push(chunkedBlogPost)
   }
 
   const json: BlogJSON = {
-    current_date: '2023-09-15',
+    current_date: new Date().toISOString().split('T')[0],
     author: 'John Mathews',
     url: 'http://johnmathews.is/posts',
     length: blogPosts.reduce((acc, essay) => acc + essay.length, 0),

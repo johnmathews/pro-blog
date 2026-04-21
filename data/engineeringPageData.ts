@@ -30,7 +30,7 @@ const metaPageData: PageData = {
       title: 'Staff Engineer',
       description: '',
       imgSrc: '',
-      href: '/blog/staff-eng',
+      href: '/blog/staff-engineer',
     },
   ],
 }

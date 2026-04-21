@@ -6,8 +6,8 @@ import { useRouter } from 'next/router'
 import SearchItem from '@/components/SearchItem'
 import algoliasearch from 'algoliasearch'
 import { getAlgoliaResults } from '@algolia/autocomplete-js'
-const appId = '56G1FXZV4K'
-const apiKey = 'c9a76549bd2473401cb96c00b503698e'
+const appId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '56G1FXZV4K'
+const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY || 'c9a76549bd2473401cb96c00b503698e'
 const searchClient = algoliasearch(appId, apiKey)
 
 import { createLocalStorageRecentSearchesPlugin } from '@algolia/autocomplete-plugin-recent-searches'

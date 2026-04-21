@@ -7,7 +7,7 @@ import ThemeSwitch from './ThemeSwitch'
 import { useRouter } from 'next/router'
 
 import { useContext } from 'react'
-import { AppContext } from './ContextProvider'
+import { AppContext, placeholderPostMetaData } from './ContextProvider'
 
 import Autocomplete from '@/components/AutoComplete'
 import '@algolia/autocomplete-theme-classic'
@@ -18,19 +18,12 @@ const LayoutWrapper = ({ children }) => {
   const router = useRouter()
   const [state, dispatch] = useContext(AppContext)
 
-  const placeHolderPostMetaData = {
-    title: 'PLACEHOLDER',
-    date: '2021-08-01',
-    category: ['PLACEHOLDER'],
-    next: 'PLACEHOLDER',
-    prev: 'PLACEHOLDER',
-  }
-  const postMetaData = state.blogPostMeta ? state.blogPostMeta : placeHolderPostMetaData
+  const postMetaData = state.blogPostMeta || placeholderPostMetaData
 
   var bottomSection
   if (router.query.slug !== undefined) {
     bottomSection = (
-      <div id="sidebarBottomSection" className="hiddden items-center text-base leading-5 md:block">
+      <div id="sidebarBottomSection" className="hidden items-center text-base leading-5 md:block">
         <div
           id="sideBarDivider"
           className="my-8 border-t-4 border-double border-gray-800 dark:border-gray-100 2xl:my-10"

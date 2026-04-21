@@ -23,17 +23,10 @@ export default function Chat() {
   const [loading, setLoading] = useState<boolean>(false)
   const [freshPage, setFreshPage] = useState<boolean>(true)
 
-  const [showSettings, setShowSettings] = useState<boolean>(false)
   const [mode, setMode] = useState<'search' | 'chat'>('chat')
   const [matchCount, setMatchCount] = useState<number>(5)
-  const [apiKey, setApiKey] = useState<string>('')
 
   const handleSearch = async () => {
-    if (!apiKey) {
-      alert('Please enter an API key.')
-      return
-    }
-
     if (!query) {
       alert('Please enter a query.')
       return
@@ -49,7 +42,7 @@ export default function Chat() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query, apiKey, matches: matchCount }),
+      body: JSON.stringify({ query, matches: matchCount }),
     })
 
     if (!searchResponse.ok) {
@@ -68,11 +61,6 @@ export default function Chat() {
   }
 
   const handleAnswer = async () => {
-    if (!apiKey) {
-      alert('Please enter an API key.')
-      return
-    }
-
     if (!query) {
       alert('Please enter a query.')
       return
@@ -96,7 +84,7 @@ export default function Chat() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ query, apiKey, matches: matchCount }),
+      body: JSON.stringify({ query, matches: matchCount }),
     })
 
     if (!searchResponse.ok) {
@@ -119,7 +107,7 @@ export default function Chat() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ prompt, apiKey }),
+      body: JSON.stringify({ prompt }),
     })
 
     if (!answerResponse.ok) {
@@ -159,30 +147,6 @@ export default function Chat() {
     }
   }
 
-  const handleSave = () => {
-    if (apiKey.length !== 51) {
-      alert('Please enter a valid API key.')
-      return
-    }
-
-    localStorage.setItem('JM_KEY', apiKey)
-    localStorage.setItem('JM_MATCH_COUNT', matchCount.toString())
-    localStorage.setItem('JM_MODE', mode)
-
-    setShowSettings(false)
-    inputRef.current?.focus()
-  }
-
-  const handleClear = () => {
-    localStorage.removeItem('JM_KEY')
-    localStorage.removeItem('JM_MATCH_COUNT')
-    localStorage.removeItem('JM_MODE')
-
-    setApiKey('')
-    setMatchCount(5)
-    setMode('search')
-  }
-
   useEffect(() => {
     if (matchCount > 10) {
       setMatchCount(10)
@@ -192,22 +156,6 @@ export default function Chat() {
   }, [matchCount])
 
   useEffect(() => {
-    const PG_KEY = localStorage.getItem('PG_KEY')
-    const PG_MATCH_COUNT = localStorage.getItem('PG_MATCH_COUNT')
-    const PG_MODE = localStorage.getItem('PG_MODE')
-
-    if (PG_KEY) {
-      setApiKey(PG_KEY)
-    }
-
-    if (PG_MATCH_COUNT) {
-      setMatchCount(parseInt(PG_MATCH_COUNT))
-    }
-
-    if (PG_MODE) {
-      setMode(PG_MODE as 'search' | 'chat')
-    }
-
     inputRef.current?.focus()
   }, [])
 
@@ -233,108 +181,27 @@ export default function Chat() {
         <div className="flex h-screen w-full flex-col items-start">
           <div className="w-full">
             <div className="flex h-full w-full flex-col items-center pr-3 pt-4 sm:pt-8">
-              <div id="hideSettings" className="hidden">
-                <button
-                  className="mt-4 flex hidden cursor-pointer items-center space-x-2 rounded-full border border-zinc-600 px-3 py-1 text-sm hover:opacity-50"
-                  onClick={() => setShowSettings(!showSettings)}
-                >
-                  {showSettings ? 'Hide' : 'Show'} Settings
+              <div id="inputWrapper" className="relative mt-4 w-full">
+                <IconSearch className="absolute left-1 top-3 h-6 w-10 rounded-full opacity-50 dark:text-gray-800 sm:left-3 sm:top-4 sm:h-8" />
+
+                <input
+                  ref={inputRef}
+                  className="h-12 w-full rounded-xl border border-zinc-600 pl-11 pr-12 text-gray-800 focus:border-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-800 dark:text-gray-800 sm:h-16 sm:py-2 sm:pl-16 sm:pr-16 sm:text-lg"
+                  type="text"
+                  placeholder="Is John a consultant data scientist?"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+
+                <button>
+                  <IconArrowRight
+                    onClick={mode === 'search' ? handleSearch : handleAnswer}
+                    className="absolute right-2 top-2.5 h-7 w-7 rounded-xl bg-green-700 p-1 text-white hover:cursor-pointer hover:bg-green-600 sm:right-3 sm:top-3 sm:h-10 sm:w-10"
+                  />
                 </button>
               </div>
-              {showSettings && (
-                <div className="w-[340px] sm:w-[400px]">
-                  <div>
-                    <div>Mode</div>
-                    <select
-                      className="block w-full max-w-[400px] cursor-pointer rounded-md border border-gray-300 p-2 text-black shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-                      value={mode}
-                      onChange={(e) => setMode(e.target.value as 'search' | 'chat')}
-                    >
-                      <option value="search">Search</option>
-                      <option value="chat">Chat</option>
-                    </select>
-                  </div>
 
-                  <div className="mt-2">
-                    <div>Passage Count</div>
-                    <input
-                      type="number"
-                      min={1}
-                      max={10}
-                      value={matchCount}
-                      onChange={(e) => setMatchCount(Number(e.target.value))}
-                      className="block w-full max-w-[400px] rounded-md border border-gray-300 p-2 text-black shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-                    />
-                  </div>
-
-                  <div className="mt-2">
-                    <div>OpenAI API Key</div>
-                    <input
-                      type="password"
-                      placeholder="OpenAI API Key"
-                      className="block w-full max-w-[400px] rounded-md border border-gray-300 p-2 text-black shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:text-sm"
-                      value={apiKey}
-                      onChange={(e) => {
-                        setApiKey(e.target.value)
-
-                        if (e.target.value.length !== 51) {
-                          setShowSettings(true)
-                        }
-                      }}
-                    />
-                  </div>
-
-                  <div className="mt-4 flex justify-center space-x-2">
-                    <div
-                      className="flex cursor-pointer items-center space-x-2 rounded-full bg-green-500 px-3 py-1 text-sm text-white hover:bg-green-600"
-                      onClick={handleSave}
-                    >
-                      Save
-                    </div>
-
-                    <div
-                      className="flex cursor-pointer items-center space-x-2 rounded-full bg-red-500 px-3 py-1 text-sm text-white hover:bg-red-600"
-                      onClick={handleClear}
-                    >
-                      Clear
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {apiKey.length === 51 ? (
-                <div id="inputWrapper" className="relative mt-4 w-full">
-                  <IconSearch className="absolute left-1 top-3 h-6 w-10 rounded-full opacity-50 dark:text-gray-800 sm:left-3 sm:top-4 sm:h-8" />
-
-                  <input
-                    ref={inputRef}
-                    className="h-12 w-full rounded-xl border border-zinc-600 pl-11 pr-12 text-gray-800 focus:border-zinc-800 focus:outline-none focus:ring-1 focus:ring-zinc-800 dark:text-gray-800 sm:h-16 sm:py-2 sm:pl-16 sm:pr-16 sm:text-lg"
-                    type="text"
-                    placeholder="Is John a consultant data scientist?"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                  />
-
-                  <button>
-                    <IconArrowRight
-                      onClick={mode === 'search' ? handleSearch : handleAnswer}
-                      className="absolute right-2 top-2.5 h-7 w-7 rounded-xl bg-green-700 p-1 text-white hover:cursor-pointer hover:bg-green-600 sm:right-3 sm:top-3 sm:h-10 sm:w-10"
-                    />
-                  </button>
-                </div>
-              ) : (
-                <div className="mt-7 text-center text-3xl font-bold">
-                  Please enter your
-                  <a
-                    className="mx-2 underline hover:opacity-50"
-                    href="https://platform.openai.com/account/api-keys"
-                  >
-                    OpenAI API key
-                  </a>
-                  in settings.
-                </div>
-              )}
               {freshPage ? (
                 <div className="mt-6 w-full">
                   <div className="text-xl">Things you could ask:</div>

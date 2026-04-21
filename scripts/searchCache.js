@@ -16,9 +16,7 @@ function getAllPosts() {
   const postsDirectory = path.join(process.cwd(), 'data/blog')
   const fileNames = fs.readdirSync(postsDirectory)
   const posts = fileNames.map((fileName) => {
-    // const id = fileName.replace(/\.md$/, '')
     const id = fileName.substring(0, fileName.lastIndexOf('.'))
-    if (id.includes('mdx')) console.log('--- debug id: ', id)
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
@@ -43,8 +41,10 @@ function getAllPosts() {
   return publishedPosts
 }
 
-const searchableContent = `export const posts = ${JSON.stringify(getAllPosts(), null, 2)}`
-const JSONData = JSON.stringify(getAllPosts(), null, 2)
+const allPosts = getAllPosts()
+
+const searchableContent = `export const posts = ${JSON.stringify(allPosts, null, 2)}`
+const JSONData = JSON.stringify(allPosts, null, 2)
 
 try {
   fs.readdirSync('cache')
@@ -67,7 +67,7 @@ fs.writeFile('cache/searchData.json', JSONData, (err) => {
 })
 
 index
-  .replaceAllObjects(getAllPosts(), { autoGenerateObjectIDIfNotExist: false })
+  .replaceAllObjects(allPosts, { autoGenerateObjectIDIfNotExist: false })
   .then(() => {
     console.log('\n✅  Algolia index updated!\n')
   })

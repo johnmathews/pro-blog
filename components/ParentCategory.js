@@ -1,13 +1,10 @@
 import ChildCategory from '@/components/ChildCategory'
 
 const ParentCategory = ({ catName, structuredCategories }) => {
-  var niceCategory = ''
-  // this is because the `capitalize` className doesnt work with hyphens
-  if (catName == 'non-technical') {
-    niceCategory = 'Non-Technical'
-  } else {
-    niceCategory = catName
-  }
+  const niceCategory = catName
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join('-')
 
   return (
     <div key={catName}>

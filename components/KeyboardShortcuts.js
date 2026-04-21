@@ -54,7 +54,6 @@ const KeyboardShortcuts = () => {
     }
   }
 
-  // https://www.anycodings.com/1questions/5494275/focusing-input-field-with-mousetrapjs-but-input-field-also-pastes-the-hotkey-as-value
   useHotkeys([
     {
       name: 'Search',
@@ -78,9 +77,6 @@ const KeyboardShortcuts = () => {
         }
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'tab',
       keys: ['tab'],
@@ -91,9 +87,6 @@ const KeyboardShortcuts = () => {
         dispatch({ type: 'TOGGLE_KEYBOARD_HINTS' })
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'j',
       keys: ['j'],
@@ -105,9 +98,6 @@ const KeyboardShortcuts = () => {
         HIDE_MODAL()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'k',
       keys: ['k'],
@@ -119,9 +109,6 @@ const KeyboardShortcuts = () => {
         HIDE_MODAL()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'ctrl+j',
       keys: ['ctrl+j'],
@@ -132,7 +119,7 @@ const KeyboardShortcuts = () => {
         dispatch({ type: 'KEYBOARD_MODE_ON' })
         const element = document.getElementsByClassName('selected')
         if (element[0] != undefined) {
-          dispatch({ type: 'LIST_POSITION_INCREASE' }) // this changes the index and therefore changes what element has "selected" status
+          dispatch({ type: 'LIST_POSITION_INCREASE' })
           try {
             element[0].scrollIntoView({ behavior: 'smooth', block: 'end' })
             const y = element[0].getBoundingClientRect().top + window.pageYOffset - 400
@@ -140,20 +127,15 @@ const KeyboardShortcuts = () => {
           } catch {
             dispatch({ type: 'LIST_POSITION_RESET' })
           }
-        } else {
-          // https://stackoverflow.com/questions/596481/is-it-possible-to-simulate-key-press-events-programmatically
         }
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'ctrl+k',
       keys: ['ctrl+k'],
       category: 'keys',
       callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'ctrl+j' })
+        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'ctrl+k' })
         clientEventLogger(router.asPath, data)
         dispatch({ type: 'KEYBOARD_MODE_ON' })
         const element = document.getElementsByClassName('selected')
@@ -161,14 +143,9 @@ const KeyboardShortcuts = () => {
           dispatch({ type: 'LIST_POSITION_DECREASE' })
           const y = element[0].getBoundingClientRect().top + window.pageYOffset - 400
           window.scrollTo({ top: y, behavior: 'smooth' })
-        } else {
-          // https://stackoverflow.com/questions/596481/is-it-possible-to-simulate-key-press-events-programmatically
         }
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'return',
       keys: ['return'],
@@ -182,9 +159,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'escape',
       keys: ['?', 'esc', 'q'],
@@ -195,9 +169,6 @@ const KeyboardShortcuts = () => {
         TOGGLE_MODAL()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'n p',
       keys: ['n', 'p'],
@@ -211,9 +182,6 @@ const KeyboardShortcuts = () => {
         dispatch({ type: 'LIST_POSITION_RESET' })
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'p p',
       keys: ['p p'],
@@ -226,9 +194,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 't t',
       keys: ['t t'],
@@ -238,12 +203,9 @@ const KeyboardShortcuts = () => {
         clientEventLogger(router.asPath, data)
         let themeButton = document.querySelector('#themeSwitcher')
         simulateMouseClick(themeButton)
-        HOUSEKEEPING({ resetList: false, resetScroll: false })
+        HOUSEKEEPING(false, false)
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g g',
       keys: ['g g'],
@@ -252,12 +214,9 @@ const KeyboardShortcuts = () => {
         let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'gg' })
         clientEventLogger(router.asPath, data)
         window.scrollTo(0, 0)
-        HOUSEKEEPING({ resetList: false, resetScroll: false })
+        HOUSEKEEPING(false, false)
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'G',
       keys: ['G'],
@@ -266,12 +225,9 @@ const KeyboardShortcuts = () => {
         let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'G' })
         clientEventLogger(router.asPath, data)
         window.scrollTo(0, 999999)
-        HOUSEKEEPING({ resetList: false, resetScroll: false })
+        HOUSEKEEPING(false, false)
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'b f',
       keys: ['b f'],
@@ -283,9 +239,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'b b',
       keys: ['b b'],
@@ -297,9 +250,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'c a',
       keys: ['c a'],
@@ -311,9 +261,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'c e',
       keys: ['c e'],
@@ -325,9 +272,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g a',
       keys: ['g a'],
@@ -339,9 +283,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g c',
       keys: ['g c'],
@@ -353,9 +294,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g o',
       keys: ['g o'],
@@ -367,9 +305,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g e',
       keys: ['g e'],
@@ -381,9 +316,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g i',
       keys: ['g i'],
@@ -395,9 +327,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g p',
       keys: ['g p'],
@@ -409,9 +338,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g l',
       keys: ['g l'],
@@ -423,9 +349,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g m',
       keys: ['g m'],
@@ -437,9 +360,6 @@ const KeyboardShortcuts = () => {
         HOUSEKEEPING()
       },
     },
-  ])
-
-  useHotkeys([
     {
       name: 'g s',
       keys: ['g s'],

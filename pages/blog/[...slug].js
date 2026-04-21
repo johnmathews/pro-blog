@@ -1,6 +1,4 @@
-import fs from 'fs'
 import PageTitle from '@/components/PageTitle'
-import generateRss from '@/lib/generate-rss'
 
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
@@ -15,10 +13,13 @@ export async function getStaticPaths() {
   const posts = getFiles('blog') // list of filenames
   // need to get the file using the slug, and then filter the slugs/files based on draft status
 
-  const notDrafts = posts.filter(async (p) => {
-    const post = await getFileBySlug('blog', formatSlug(p))
-    return !post.draft
-  })
+  const postDetails = await Promise.all(
+    posts.map(async (p) => {
+      const post = await getFileBySlug('blog', formatSlug(p))
+      return { p, isDraft: post.frontMatter.draft === true }
+    })
+  )
+  const notDrafts = postDetails.filter(({ isDraft }) => !isDraft).map(({ p }) => p)
 
   const paths = notDrafts.map((p) => ({
     params: {
@@ -61,12 +62,6 @@ export async function getStaticProps({ params }) {
   })
   const authorDetails = await Promise.all(authorPromise)
 
-  // rss
-  if (allPosts.length > 0) {
-    const rss = generateRss(allPosts)
-    fs.writeFileSync('./public/feed.xml', rss)
-  }
-
   return { props: { post, authorDetails, prev, next } }
 }
 
@@ -75,9 +70,7 @@ export default function Blog({ post, authorDetails, prev, next }) {
   const { image } = frontMatter
 
   const [_, dispatch] = useContext(AppContext)
-  const postMetaData = frontMatter
-  postMetaData.prev = prev
-  postMetaData.next = next
+  const postMetaData = { ...frontMatter, prev, next }
 
   const router = useRouter()
 

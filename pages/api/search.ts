@@ -6,10 +6,14 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
   try {
-    const { query, apiKey, matches } = (await req.json()) as {
+    const { query, matches } = (await req.json()) as {
       query: string
-      apiKey: string
       matches: number
+    }
+
+    const apiKey = process.env.OPENAI_API_KEY
+    if (!apiKey) {
+      return new Response('OpenAI API key not configured', { status: 500 })
     }
 
     const input = query.replace(/\n/g, ' ')
