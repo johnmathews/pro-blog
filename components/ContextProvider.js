@@ -20,8 +20,6 @@ const placeHolderPostMetaData = {
 
 // this is the initial state that everyone starts with
 const initialState = {
-  technical: true,
-  nonTechnical: false,
   postMetaData: placeHolderPostMetaData,
   showModal: false,
   listPosition: 0,

@@ -2,7 +2,7 @@
 title: Sleep
 slug: sleep-is-good
 date: '2021-05-04 17:57:30'
-category: technical.snippet, non-technical.snippet
+category: technical.snippet
 tags: ['sleep', 'lifestyle']
 ---
 

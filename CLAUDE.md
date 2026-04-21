@@ -4,7 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal blog for johnmathews.is — a Next.js 13 (Pages Router) application with MDX content, Algolia search, and an OpenAI-powered chatbot. Deployed on Vercel.
+Personal blog for johnmathews.is — a Next.js 13 (Pages Router) application with MDX content, Algolia search, and an
+OpenAI-powered chatbot. Deployed on Vercel.
 
 ## Commands
 
@@ -39,7 +40,10 @@ No test framework is configured.
 
 ### Content Pipeline
 
-Blog posts live in `data/blog/` as `.md` and `.mdx` files with YAML frontmatter. The core content processing is in `lib/mdx.js`, which uses `mdx-bundler` with a chain of remark plugins (GFM, math, footnotes, code titles, image-to-JSX) and rehype plugins (slug, autolink-headings, KaTeX, Prism syntax highlighting, citation, minify). Posts are statically generated at build time.
+Blog posts live in `data/blog/` as `.md` and `.mdx` files with YAML frontmatter. The core content processing is in
+`lib/mdx.js`, which uses `mdx-bundler` with a chain of remark plugins (GFM, math, footnotes, code titles, image-to-JSX)
+and rehype plugins (slug, autolink-headings, KaTeX, Prism syntax highlighting, citation, minify). Posts are statically
+generated at build time.
 
 ### Routing
 
@@ -50,7 +54,8 @@ Blog posts live in `data/blog/` as `.md` and `.mdx` files with YAML frontmatter.
 
 ### Layouts
 
-Layout components in `layouts/` wrap page content: `PostLayout`, `ListLayout`, `SnippetLayout`, `SnippetCardLayout`, `AboutPageLayout`, `ExperienceLayout`. Posts select their layout via frontmatter `layout` field.
+Layout components in `layouts/` wrap page content: `PostLayout`, `ListLayout`, `SnippetLayout`, `SnippetCardLayout`,
+`AboutPageLayout`, `ExperienceLayout`. Posts select their layout via frontmatter `layout` field.
 
 ### Key Files
 
@@ -95,7 +100,8 @@ layout: string # layout component name (e.g. "PostLayout")
 
 ## Node Version
 
-Managed via `.nvmrc` (currently Node 22). Vercel reads this file for builds. Locally, use `nvm use` or `fnm use` to match.
+Managed via `.nvmrc` (currently Node 22). Vercel reads this file for builds. Locally, use `nvm use` or `fnm use` to
+match.
 
 ## Environment Variables
 

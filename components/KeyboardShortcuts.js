@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useHotkeys } from 'reakeys'
 
 import { AppContext } from '@/components/ContextProvider'
-import { setToStorage } from '@/lib/localStorage'
 
 const mouseClickEvents = ['click']
 
@@ -231,54 +230,6 @@ const KeyboardShortcuts = () => {
 
   useHotkeys([
     {
-      name: 'v a',
-      keys: ['v a'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'va' })
-        clientEventLogger(router.asPath, data)
-        setToStorage('postFilter', 'both')
-        let allPostsButton = document.querySelector('#selectAllPosts')
-        simulateMouseClick(allPostsButton)
-        HOUSEKEEPING({ resetList: true, resetScroll: true })
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'v n',
-      keys: ['v n'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'vn' })
-        clientEventLogger(router.asPath, data)
-        setToStorage('postFilter', 'nontechnical')
-        let nonTechnicalButton = document.querySelector('#selectNonTechnical')
-        simulateMouseClick(nonTechnicalButton)
-        HOUSEKEEPING({ resetList: true, resetScroll: true })
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'v t',
-      keys: ['v t'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'vt' })
-        clientEventLogger(router.asPath, data)
-        setToStorage('postFilter', 'technical')
-        let technicalButton = document.querySelector('#selectTechnical')
-        simulateMouseClick(technicalButton)
-        HOUSEKEEPING({ resetList: true, resetScroll: true })
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
       name: 't t',
       keys: ['t t'],
       category: 'keys',
@@ -364,20 +315,6 @@ const KeyboardShortcuts = () => {
 
   useHotkeys([
     {
-      name: 'c b',
-      keys: ['c b'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cb' })
-        clientEventLogger(router.asPath, data)
-        router.push('/bible')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
       name: 'c e',
       keys: ['c e'],
       category: 'keys',
@@ -385,119 +322,6 @@ const KeyboardShortcuts = () => {
         let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'ce' })
         clientEventLogger(router.asPath, data)
         router.push('/engineering')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c f',
-      keys: ['c f'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cf' })
-        clientEventLogger(router.asPath, data)
-        router.push('/finance')
-        HIDE_MODAL()
-        dispatch({ type: 'LIST_POSITION_RESET' })
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c m',
-      keys: ['c m'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cm' })
-        clientEventLogger(router.asPath, data)
-        router.push('/micro-saas')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c n',
-      keys: ['c n'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cn' })
-        clientEventLogger(router.asPath, data)
-        router.push('/math')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c k',
-      keys: ['c k'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'ck' })
-        clientEventLogger(router.asPath, data)
-        router.push('/books')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c l',
-      keys: ['c l'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cl' })
-        clientEventLogger(router.asPath, data)
-        router.push('/longform')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c p',
-      keys: ['c p'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cp' })
-        clientEventLogger(router.asPath, data)
-        router.push('/sport')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c s',
-      keys: ['c s'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'cs' })
-        clientEventLogger(router.asPath, data)
-        router.push('/summaries')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'c t',
-      keys: ['c t'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'ct' })
-        clientEventLogger(router.asPath, data)
-        router.push('/meta')
         HOUSEKEEPING()
       },
     },
@@ -610,20 +434,6 @@ const KeyboardShortcuts = () => {
         let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'gm' })
         clientEventLogger(router.asPath, data)
         router.push('/metrics')
-        HOUSEKEEPING()
-      },
-    },
-  ])
-
-  useHotkeys([
-    {
-      name: 'g f',
-      keys: ['g f'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'gf' })
-        clientEventLogger(router.asPath, data)
-        router.push('/photographs')
         HOUSEKEEPING()
       },
     },

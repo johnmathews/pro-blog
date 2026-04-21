@@ -3,12 +3,7 @@ import Tag from '@/components/Tag'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import formatDate from '@/lib/utils/formatDate'
 
-import { AppContext } from '@/components/ContextProvider'
-import { useContext } from 'react'
-
 export default function SnippetLayout({ content, frontMatter, title }) {
-  const [state, _] = useContext(AppContext)
-
   // anything to do with a specific snippet post is within content.map loop below
   return (
     <>
@@ -27,10 +22,7 @@ export default function SnippetLayout({ content, frontMatter, title }) {
           className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 md:gap-3 lg:grid-cols-3 xl:gap-5 2xl:grid-cols-3"
         >
           {content.map((post) => {
-            const { slug, date, title, tags, category } = post.frontMatter
-            const lowerCaseCategories = category.map(function (item) {
-              return item.toLowerCase()
-            })
+            const { slug, date, title, tags } = post.frontMatter
             const { mdxSource } = post
 
             var PostDescription
@@ -46,24 +38,10 @@ export default function SnippetLayout({ content, frontMatter, title }) {
               PostDescription = null
             }
 
-            var showPost = false
-            if (state.technical && state.nonTechnical) {
-              showPost = true
-            } else if (state.technical && lowerCaseCategories.includes('technical.snippet')) {
-              showPost = true
-            } else if (
-              state.nonTechnical &&
-              lowerCaseCategories.includes('non-technical.snippet')
-            ) {
-              showPost = true
-            }
-
             return (
               <article
                 key={slug}
-                className={`snippet flex flex-col rounded-lg border-2 border-gray-300 bg-gray-100 shadow-lg dark:border-gray-200 dark:bg-slate-800 ${
-                  showPost ? null : 'hidden'
-                }`}
+                className="snippet flex flex-col rounded-lg border-2 border-gray-300 bg-gray-100 shadow-lg dark:border-gray-200 dark:bg-slate-800"
               >
                 <div className="flex-grow">
                   <div className="my-3 px-4">

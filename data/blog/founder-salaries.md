@@ -2,7 +2,7 @@
 title: Founder Salaries
 slug: founder-salaries
 date: '2022-03-01 16:20:56'
-category: technical.snippet, non-technical.snippet
+category: technical.snippet
 tags: ['startups', 'entrepreneur']
 ---
 

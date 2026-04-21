@@ -2,7 +2,7 @@
 title: SaaS metrics that matter
 slug: saas-metrics-that-matter
 date: '2021-10-19 16:39:25'
-category: technical.snippet, non-technical.snippet
+category: technical.snippet
 tags: ['saas', 'entrepreneurship']
 ---
 

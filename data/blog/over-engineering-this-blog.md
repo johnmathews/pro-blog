@@ -1,7 +1,7 @@
 ---
 title: Over-Engineering this blog
 date: '2021-4-5 11:54'
-category: Technical.Web, Non-technical.Journal
+category: Technical.Web
 tags: ['blog', 'javascript', 'self-reflection']
 ---
 

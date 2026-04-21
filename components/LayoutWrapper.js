@@ -12,8 +12,6 @@ import { AppContext } from './ContextProvider'
 import Autocomplete from '@/components/AutoComplete'
 import '@algolia/autocomplete-theme-classic'
 
-import { setToStorage } from '@/lib/localStorage'
-
 import Category from '@/components/Category'
 
 const LayoutWrapper = ({ children }) => {
@@ -29,75 +27,8 @@ const LayoutWrapper = ({ children }) => {
   }
   const postMetaData = state.blogPostMeta ? state.blogPostMeta : placeHolderPostMetaData
 
-  function ONLY_TECHNICAL() {
-    dispatch({
-      type: 'TECHNICAL',
-    })
-    setToStorage('postFilter', 'technical')
-  }
-  function ONLY_NONTECHNICAL() {
-    dispatch({
-      type: 'NONTECHNICAL',
-    })
-    setToStorage('postFilter', 'nontechnical')
-  }
-  function ALL_POSTS() {
-    dispatch({
-      type: 'ALL',
-    })
-    setToStorage('postFilter', 'both')
-  }
-
   var bottomSection
-  if (['/posts', '/snippets'].includes(router.asPath)) {
-    bottomSection = (
-      <>
-        <div className="mb-10 mt-10 w-36 border-b-8 border-double  border-gray-600 dark:border-gray-200 "></div>
-        <div className="mt-5 text-lg">
-          <div className="mb-2 font-medium">Categories:</div>
-          <div className={`my-2`}>
-            <button
-              id="selectTechnical"
-              className={`${
-                state.technical && !state.nonTechnical
-                  ? 'font-small px-2 italic underline'
-                  : 'px-2 font-normal '
-              }`}
-              onClick={ONLY_TECHNICAL}
-            >
-              {`${state.technical && !state.nonTechnical ? '' : ''}`} Technical
-            </button>
-          </div>
-          <div className={`my-2 `}>
-            <button
-              id="selectNonTechnical"
-              className={`${
-                !state.technical && state.nonTechnical
-                  ? 'font-small px-2 italic underline'
-                  : 'px-2 font-normal'
-              }`}
-              onClick={ONLY_NONTECHNICAL}
-            >
-              {`${!state.technical && state.nonTechnical ? '' : ''}`} Non-technical
-            </button>
-          </div>
-          <div className={`my-2 `}>
-            <button
-              id="selectAllPosts"
-              className={`${
-                state.technical && state.nonTechnical
-                  ? 'font-small px-2 italic underline'
-                  : 'px-2 font-normal'
-              }`}
-              onClick={ALL_POSTS}
-            >
-              {`${state.technical && state.nonTechnical ? '' : ''}`} Everything
-            </button>
-          </div>
-        </div>
-      </>
-    )
-  } else if (router.query.slug !== undefined) {
+  if (router.query.slug !== undefined) {
     bottomSection = (
       <div id="sidebarBottomSection" className="hiddden items-center text-base leading-5 md:block">
         <div

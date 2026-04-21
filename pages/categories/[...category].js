@@ -71,7 +71,7 @@ export default function Category({ posts, category }) {
         title={`${formattedTitle} - ${siteMetadata.author}`}
         description={`${formattedTitle} category - ${siteMetadata.author}`}
       />
-      <ListLayout posts={posts} title={formattedTitle} filterCats={false} />
+      <ListLayout posts={posts} title={formattedTitle} />
     </>
   )
 }

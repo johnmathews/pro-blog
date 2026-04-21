@@ -5,15 +5,12 @@ import Autocomplete from '@/components/AutoComplete'
 
 import ThemeSwitch from '@/components/ThemeSwitch'
 
-import { useContext, useState } from 'react'
-import { AppContext } from './ContextProvider'
+import { useState } from 'react'
 
-import { setToStorage } from '@/lib/localStorage'
 import '@algolia/autocomplete-theme-classic'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
-  const [state, dispatch] = useContext(AppContext)
 
   const onToggleNav = () => {
     setNavShow((status) => {
@@ -25,25 +22,6 @@ const MobileNav = () => {
       }
       return !status
     })
-  }
-
-  function ONLY_TECHNICAL() {
-    dispatch({
-      type: 'TECHNICAL',
-    })
-    setToStorage('postFilter', 'technical')
-  }
-  function ONLY_NONTECHNICAL() {
-    dispatch({
-      type: 'NONTECHNICAL',
-    })
-    setToStorage('postFilter', 'nontechnical')
-  }
-  function ALL_POSTS() {
-    dispatch({
-      type: 'ALL',
-    })
-    setToStorage('postFilter', 'both')
   }
 
   return (
@@ -117,53 +95,6 @@ const MobileNav = () => {
             className="text-right text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100 "
           >
             <Autocomplete />
-          </div>
-
-          <div
-            id="catChooserWrapper"
-            className="mt-8 flex flex-row-reverse px-12 text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100  "
-          >
-            <div className={`my-2 `}>
-              <button
-                id="selectAllPosts"
-                className={`${
-                  state.technical && state.nonTechnical
-                    ? 'font-small border-b-2 border-gray-800  px-2 dark:border-gray-200'
-                    : 'px-2 font-normal'
-                }`}
-                onClick={ALL_POSTS}
-              >
-                {`${state.technical && state.nonTechnical ? '' : ''}`} A
-              </button>
-            </div>
-            <div className="mx-1 my-2">&#47;&#47;</div>
-            <div className={`my-2 `}>
-              <button
-                id="selectNonTechnical"
-                className={`${
-                  !state.technical && state.nonTechnical
-                    ? 'font-small border-b-2 border-gray-800  px-2 dark:border-gray-200'
-                    : 'px-2 font-normal'
-                }`}
-                onClick={ONLY_NONTECHNICAL}
-              >
-                {`${!state.technical && state.nonTechnical ? '' : ''}`} NT
-              </button>
-            </div>
-            <div className="mx-1 my-2">&#47;&#47;</div>
-            <div className={`my-2`}>
-              <button
-                id="selectTechnical"
-                className={`${
-                  state.technical && !state.nonTechnical
-                    ? 'font-small border-b-2 border-gray-800 px-2 dark:border-gray-200'
-                    : 'px-2 font-normal '
-                }`}
-                onClick={ONLY_TECHNICAL}
-              >
-                {`${state.technical && !state.nonTechnical ? '' : ''}`} T
-              </button>
-            </div>
           </div>
         </nav>
       </div>

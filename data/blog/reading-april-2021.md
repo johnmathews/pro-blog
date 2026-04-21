@@ -1,7 +1,7 @@
 ---
 title: Reading - April 2021
 date: '2021-04-21 12:55:20'
-category: Non-technical.Journal, Technical.Other
+category: Technical.Other
 tags: ['reading']
 ---
 
