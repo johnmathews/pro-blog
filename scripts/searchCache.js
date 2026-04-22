@@ -9,7 +9,10 @@ const fs = require('fs')
 const path = require('path')
 const matter = require('gray-matter')
 
-const client = algoliasearch('56G1FXZV4K', process.env.ALGOLIA_ADMIN_API_KEY)
+const client = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '56G1FXZV4K',
+  process.env.ALGOLIA_ADMIN_API_KEY
+)
 const index = client.initIndex(process.env.ALGOLIA_INDEX_NAME)
 
 function getAllPosts() {

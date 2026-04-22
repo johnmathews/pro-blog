@@ -48,7 +48,7 @@ generated at build time.
 ### Routing
 
 - `pages/blog/[...slug].js` — catch-all route for individual blog posts
-- `pages/*.js` — collection/category pages (posts, engineering, finance, snippets, etc.)
+- `pages/*.js` — collection/category pages (posts, engineering, snippets, etc.)
 - `pages/api/` — API routes for search and chat
 - `pages/chat.tsx` — chatbot interface
 
@@ -92,7 +92,7 @@ Layout components in `layouts/` wrap page content: `PostLayout`, `ListLayout`, `
 title: string # required
 date: string # ISO date
 tags: [string]
-category: string # "technical" | "non-technical" | "snippet"
+category: string # "technical" or "technical.snippet"
 draft: boolean # true excludes from build and sitemap
 summary: string
 layout: string # layout component name (e.g. "PostLayout")
@@ -107,6 +107,7 @@ match.
 
 Required in `.env.local`:
 
-- `OPENAI_API_KEY` — chatbot
+- `OPENAI_API_KEY` — chatbot (used server-side by API routes)
 - `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — embeddings storage
 - `ALGOLIA_ADMIN_API_KEY`, `ALGOLIA_INDEX_NAME` — search indexing (used by `searchCache.js`)
+- `NEXT_PUBLIC_ALGOLIA_APP_ID`, `NEXT_PUBLIC_ALGOLIA_SEARCH_KEY` — client-side search (falls back to hardcoded defaults)

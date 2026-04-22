@@ -1,48 +1,45 @@
-# Personal blog built using Tailwind and Nextjs.
+# Pro Blog
 
-## Setup for local development
+Personal technical blog at [johnmathews.is](https://johnmathews.is) — built with Next.js 13 (Pages Router), Tailwind CSS, and MDX.
 
-1. `yarn`
-2. `yarn build`
-3. `yarn start`
+## Local development
 
-Then go to localhost:3000
+```bash
+npm run dev        # Next.js dev server
+npm run start      # Dev server with hot reload for content changes
+```
 
-## Deploy and publish
+Then visit http://localhost:3000.
 
-1. Push to `main`. If you push to another branch the deploy will be built but it won't be promoted
-   to production.
+## Build and deploy
+
+```bash
+npm run build      # Next.js build + sitemap + Algolia search index
+```
+
+Push to `main` to deploy to Vercel. Pushes to other branches trigger preview builds.
 
 ## Search and sitemap
 
-1. Run `yarn aux`.
-2. Alternatively, if you run `yarn build` then the sitemap, search index and aloglia data will be
-   updated and uploaded too.
+```bash
+npm run aux        # Regenerate sitemap + Algolia index without a full build
+```
 
-## How to create a new blog post or snippet
-
-1. In vim, run `:Mp name-of-markdown-file`
-2. In neovim, use the `meta` snippet to generate the frontmatter.
+These also run automatically as part of `npm run build`.
 
 ## Chatbot
 
-Go to [/chat](https://johnmathews.is/chat) and you can ask a chatbot questions about me and the
-content on my blog. It's kind of like an interactive CV.
+An AI chatbot at [/chat](https://johnmathews.is/chat) answers questions about the blog content using OpenAI embeddings stored in Supabase.
 
-### Build
+```bash
+npm run scrape     # Scrape the live site for training data
+npm run embed      # Generate OpenAI embeddings and upload to Supabase
+npm run chat       # Run scrape + embed together
+```
 
-1. run `npm run scrape` - this scrapes the live site at
-   [johnmathews.is](https://johnmathws.is/posts) and puts the data in `scripts/jm.json`.
-2. run `npm run embed`
+## Keyboard shortcuts
 
-Alternatively, `yarn chat` will do the whole process sequentially.
-
-## Extra things
-
-- Use `?` to show keyboard shortcuts.
-- Use `cmd-K` to search.
-- There are simple usage metrics at [/metrics](https://johnmathews.is/metrics).
-
-## Known issues
-
-- The photos pages, or maybe images in general, cause some warnings about latex incompatible input.
+- `?` — show keyboard shortcuts
+- `Cmd+K` or `/` — search
+- `j`/`k` — scroll down/up
+- Usage metrics at [/metrics](https://johnmathews.is/metrics)

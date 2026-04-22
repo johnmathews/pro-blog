@@ -14,6 +14,8 @@
     "aux": "node ./scripts/generate-sitemap && node ./scripts/searchCache",
     "buildSearchIndex": "node ./scripts/searchCache",
     "buildSitemap": "node ./scripts/generate-sitemap",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
     "prepare": "husky install"
   },
@@ -104,7 +106,8 @@
     "ts-loader": "^9.4.1",
     "ts-node": "^10.9.1",
     "tsx": "^3.12.10",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "vitest": "^4.1.5"
   },
   "lint-staged": {
     "*.+(js|jsx|ts|tsx)": [
