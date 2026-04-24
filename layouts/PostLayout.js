@@ -124,12 +124,12 @@ export default function PostLayout({ frontMatter, authorDetails, children }) {
                   </div>
                   <footer className="">
                     <div className="pt-4 xl:pt-8">
-                      <Link
+                      <button
                         className="text-lg font-semibold text-blue-700 hover:underline dark:text-blue-300"
-                        href="#"
+                        onClick={() => router.back()}
                       >
-                        <a onClick={() => router.back()}>← Go back</a>
-                      </Link>{' '}
+                        ← Go back
+                      </button>{' '}
                     </div>
                   </footer>
                 </div>

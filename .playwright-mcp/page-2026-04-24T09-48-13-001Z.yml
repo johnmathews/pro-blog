@@ -1,0 +1,31 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - link "Blog" [ref=e7] [cursor=pointer]:
+          - /url: /posts
+      - listitem [ref=e8]:
+        - link "Collections" [ref=e9] [cursor=pointer]:
+          - /url: /collections
+      - listitem [ref=e10]:
+        - link "Snippets" [ref=e11] [cursor=pointer]:
+          - /url: /snippets
+      - listitem [ref=e12]:
+        - link "Metrics" [ref=e13] [cursor=pointer]:
+          - /url: /metrics
+      - listitem [ref=e14]:
+        - link "About" [ref=e15] [cursor=pointer]:
+          - /url: /about
+      - listitem [ref=e16]:
+        - combobox "Search" [ref=e18]:
+          - button "Search" [ref=e19] [cursor=pointer]:
+            - generic [ref=e20]: Search
+      - listitem [ref=e21]:
+        - button "Toggle Dark Mode" [ref=e22]:
+          - img [ref=e23]
+    - link "cover image" [ref=e26] [cursor=pointer]:
+      - /url: /posts
+      - img "cover image" [ref=e27]
+  - button "Open Next.js Dev Tools" [ref=e33] [cursor=pointer]:
+    - img [ref=e34]
+  - alert [ref=e37]
