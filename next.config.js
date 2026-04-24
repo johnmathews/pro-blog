@@ -99,6 +99,14 @@ module.exports = withBundleAnalyzer({
     ]
   },
   images: { domains: ['picsum.photos', 'flagcdn.com'], formats: ['image/avif', 'image/webp'] },
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
