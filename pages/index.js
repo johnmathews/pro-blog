@@ -50,7 +50,7 @@ export default function Home() {
                 </Link>
               </li>
             ))}
-            <li className="mt-10 -ml-20 pl-1">
+            <li className="mt-10">
               <Autocomplete />
             </li>
             <li className="mt-4 -ml-3 font-normal text-gray-700 hover:underline dark:text-gray-200">

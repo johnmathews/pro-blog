@@ -30,7 +30,7 @@ const Modal = () => {
                     {heading}
                   </h2>
                   {keyboardShortcutsMenuItems[heading].map((item) => (
-                    <div key={item.item} className="flex text-gray-800 dark:text-gray-200">
+                    <div key={item.item} className="my-1.5 flex text-gray-800 dark:text-gray-200">
                       <div className="mr-2 rounded-lg border-2 bg-gray-400 px-2 dark:border-gray-500 dark:bg-gray-600">
                         {item.item}
                       </div>

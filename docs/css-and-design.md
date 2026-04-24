@@ -44,10 +44,12 @@ Breakpoints, fonts, spacing, colors. The color palette uses OKLCh for perceptual
 - `gray-50` through `gray-950` — neutral palette (replaces Tailwind's default gray)
 - `primary-50` through `primary-950` — teal accent color
 
-**Typography prose (lines 77-116):**
+**Typography prose (lines 77-136):**
 Custom CSS properties for the `@tailwindcss/typography` plugin. Defines text colors for
 body, headings, links, code, etc. in both light mode (`--tw-prose-*`) and dark mode
-(`--tw-prose-invert-*`).
+(`--tw-prose-invert-*`). Because these custom properties are set explicitly on `.prose`,
+Tailwind's `prose-invert` utility cannot override them. A separate `.dark .prose` block
+(lines 118-135) swaps the active variables to their invert values for dark mode.
 
 ## Dark Mode
 
@@ -174,6 +176,24 @@ The sidebar outer wrapper uses a custom class in `css/tailwind.css`:
   @apply 3xl:ml-0 -mt-3 mr-5 w-1/6 md:ml-10 lg:ml-5 xl:ml-0 2xl:mr-20 2xl:w-1/12;
 }
 ```
+
+## Algolia Search Dark Mode
+
+The Algolia autocomplete theme (`@algolia/autocomplete-theme-classic`) uses CSS variables
+(`--aa-text-color-rgb`, `--aa-background-color-rgb`, etc.) that default to light-mode values.
+These are overridden in `css/algolia.css` under a `.dark` selector.
+
+The search button appears in three contexts, each with its own CSS rules in `algolia.css`:
+
+| Context                   | CSS Selector Prefix             | Notes                                          |
+| ------------------------- | ------------------------------- | ---------------------------------------------- |
+| Sidebar (list/blog pages) | `#autoCompleteComponentWrapper` | Transparent background, matches sidebar        |
+| Landing page              | `#landingListColumn`            | Left-aligned, transparent, matches nav styling |
+| Mobile nav                | `#mobileNavLinks`               | Distinct background for mobile drawer          |
+
+Because the Algolia theme applies colors via its own CSS variables and specificity, Tailwind
+`dark:` utility classes alone cannot override them. The approach uses `!important` on explicit
+`color` declarations within `.dark` ancestor selectors.
 
 ## Common Design Changes
 

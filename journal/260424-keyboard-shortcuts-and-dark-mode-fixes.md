@@ -134,6 +134,57 @@ in the upgrade but the menu item reference remained.
 | `docs/*`                             | New and updated documentation                    |
 | `run-books/dependency-upgrade.md`    | New: upgrade runbook                             |
 
+## Session 2: Dependency fixes and dark mode completion
+
+### npm install broken
+
+After merging the upgrade branch, `npm install` failed with peer dependency conflicts:
+
+1. `@tabler/icons-react@2.47.0` only supports React 16-18. Upgraded to `^3.41.0` which
+   supports `react >= 16`. Only used for 3 icons in chat components — no API changes.
+2. `react-table@7.8.0` declares `react@^18` peer dep but works fine with React 19. The
+   package is unmaintained. Added `.npmrc` with `legacy-peer-deps=true` as a workaround.
+   Long-term fix: migrate to `@tanstack/react-table`.
+
+### Algolia search dark mode
+
+The search button had a white background in dark mode across three contexts (sidebar,
+landing page, mobile nav). Root causes:
+
+- Algolia's `@algolia/autocomplete-theme-classic` uses CSS variables (`--aa-text-color-rgb`,
+  `--aa-background-color-rgb`) that default to white/black with no dark mode override
+- The old CSS selectors referenced `#sidebarTopSection` which no longer exists in the DOM
+- Tailwind `dark:` utility classes couldn't override Algolia's theme specificity
+
+Fix: Added `.dark` block in `algolia.css` to override Algolia CSS variables; used
+`!important` on explicit `color` declarations with `.dark` ancestor selectors for each
+context; made button backgrounds transparent in sidebar and landing page; aligned search
+text with nav items (removed stale `-ml-20 pl-1` offset); matched text size to `text-lg`.
+
+### Prose dark mode (snippets page)
+
+Snippet card body text was nearly invisible in dark mode. The `.prose` class in
+`tailwind.css` explicitly sets `--tw-prose-body` and other variables, which prevents
+Tailwind v4's `prose-invert` utility from overriding them. Fix: added a `.dark .prose`
+block that swaps all active prose variables to their invert values.
+
+### Keyboard shortcuts modal spacing
+
+Shortcut rows in the modal had no vertical gap, causing keybind labels to overlap.
+Added `my-1.5` to each row.
+
+### Files changed (session 2)
+
+| File                     | Change                                            |
+| ------------------------ | ------------------------------------------------- |
+| `css/algolia.css`        | Dark mode fixes for search button in all contexts |
+| `css/tailwind.css`       | Added `.dark .prose` variable swap block          |
+| `components/Modal.js`    | Added row spacing to keyboard shortcuts modal     |
+| `pages/index.js`         | Aligned search with nav items on landing page     |
+| `package.json`           | Upgraded @tabler/icons-react v2 -> v3             |
+| `.npmrc`                 | New: legacy-peer-deps for react-table compat      |
+| `docs/css-and-design.md` | Added Algolia dark mode docs, updated prose docs  |
+
 ## Lessons learned
 
 1. **Library upgrades can silently break features.** reakeys v2 had no changelog and no
