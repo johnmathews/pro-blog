@@ -21,6 +21,7 @@ import { useEffect } from 'react'
 
 import siteMetadata from '@/data/siteMetadata'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import LayoutWrapper from '@/components/LayoutWrapper'
 import Modal from '@/components/Modal'
 import ContextProvider from '@/components/ContextProvider'
@@ -54,6 +55,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       {isDevelopment && isSocket && <ClientReload />}
       <Analytics />
+      <SpeedInsights />
       <ContextProvider>
         {isLandingPage ? (
           <Component {...pageProps} />

@@ -72,16 +72,16 @@ next build → generate-sitemap.js → searchCache.js
 
 ## Key Files
 
-| File                          | Purpose                                         |
-| ----------------------------- | ----------------------------------------------- |
-| `data/siteMetadata.js`        | Global site config (CommonJS `module.exports`)  |
-| `lib/mdx.js`                  | MDX bundling, frontmatter parsing, file listing |
-| `pages/_app.js`               | Theme setup, global state, layout wrapper       |
-| `next.config.js`              | Security headers, image domains, redirects      |
-| `scripts/searchCache.js`      | Algolia index builder                           |
-| `scripts/generate-sitemap.js` | XML sitemap generator                           |
-| `css/tailwind.css`            | Tailwind v4 theme and custom styles             |
-| `postcss.config.js`           | PostCSS with `@tailwindcss/postcss`             |
+| File                          | Purpose                                                                      |
+| ----------------------------- | ---------------------------------------------------------------------------- |
+| `data/siteMetadata.js`        | Global site config (CommonJS `module.exports`)                               |
+| `lib/mdx.js`                  | MDX bundling, frontmatter parsing, file listing                              |
+| `pages/_app.js`               | Theme setup, global state, layout wrapper, Vercel Analytics & Speed Insights |
+| `next.config.js`              | Security headers, image domains, redirects                                   |
+| `scripts/searchCache.js`      | Algolia index builder                                                        |
+| `scripts/generate-sitemap.js` | XML sitemap generator                                                        |
+| `css/tailwind.css`            | Tailwind v4 theme and custom styles                                          |
+| `postcss.config.js`           | PostCSS with `@tailwindcss/postcss`                                          |
 
 ## Routing
 
@@ -100,6 +100,14 @@ In `layouts/`:
 - `ExperienceLayout` -- experience/CV page
 
 Posts select their layout via the frontmatter `layout` field.
+
+## Analytics & Monitoring
+
+- **Vercel Analytics** (`@vercel/analytics/react`) -- page view and visitor tracking
+- **Vercel Speed Insights** (`@vercel/speed-insights/next`) -- Core Web Vitals (LCP, CLS, FID, TTFB, INP)
+- **Custom analytics** -- `homeBrewAnalytics()` in `pages/_app.js` sends beacons to a Cloud Function
+
+Both Vercel components are rendered in `pages/_app.js` and require no configuration beyond deployment on Vercel.
 
 ## Testing
 
