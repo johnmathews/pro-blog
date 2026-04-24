@@ -8,11 +8,11 @@ export default function SnippetLayout({ content, frontMatter, title }) {
   return (
     <>
       <div id="snippetLayoutWrapper" className="lg:-ml-10 xl:-ml-0">
-        <div className="space-y-2 pb-8 pt-6 md:space-y-5">
-          <div className="mb-10 text-6xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+          <div className="mb-10 text-6xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
             {title}
           </div>
-          <div className="relative mt-20 max-w-lg ">
+          <div className="relative mt-20 max-w-lg">
             {' '}
             Notes and bookmarks to content from around the web.
           </div>
@@ -29,7 +29,7 @@ export default function SnippetLayout({ content, frontMatter, title }) {
             const description = post.frontMatter.summary || post.frontMatter.description
             if (description) {
               PostDescription = (
-                <div id="postSummary" className=" mb-3 text-lg">
+                <div id="postSummary" className="mb-3 text-lg">
                   {' '}
                   {description}{' '}
                 </div>
@@ -52,8 +52,8 @@ export default function SnippetLayout({ content, frontMatter, title }) {
                       {title}
                     </Link>
                   </div>
-                  <div className="markdown  max-h-snippetContent overflow-y-auto ">
-                    <div className="px-4 pb-4 text-lg  ">
+                  <div className="markdown max-h-snippetContent overflow-y-auto">
+                    <div className="px-4 pb-4 text-lg">
                       {PostDescription}
                       <MDXLayoutRenderer layout="SnippetCardLayout" mdxSource={mdxSource} />
                     </div>
@@ -61,16 +61,16 @@ export default function SnippetLayout({ content, frontMatter, title }) {
                 </div>
                 <div
                   id="footer"
-                  className="min-h-16 mb-1 border-t-2 border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-slate-800"
+                  className="mb-1 min-h-16 border-t-2 border-gray-200 bg-gray-100 dark:border-gray-700 dark:bg-slate-800"
                 >
-                  <div className="markdown mx-3  mb-1 mt-2">
+                  <div className="markdown mx-3 mt-2 mb-1">
                     <dl>
                       <dd className="font-mono text-sm text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date)}</time>
                       </dd>
                     </dl>
                   </div>
-                  <div className="mb-2 mt-1 flex flex-wrap px-3">
+                  <div className="mt-1 mb-2 flex flex-wrap px-3">
                     {tags.map((tag) => (
                       <Tag key={tag} text={tag} />
                     ))}

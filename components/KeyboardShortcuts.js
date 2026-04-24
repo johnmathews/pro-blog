@@ -284,17 +284,6 @@ const KeyboardShortcuts = () => {
       },
     },
     {
-      name: 'g c',
-      keys: ['g c'],
-      category: 'keys',
-      callback: (e) => {
-        let data = JSON.stringify({ category: 'keyboard-shortcut', event: 'gc' })
-        clientEventLogger(router.asPath, data)
-        router.push('/chat')
-        HOUSEKEEPING()
-      },
-    },
-    {
       name: 'g o',
       keys: ['g o'],
       category: 'keys',

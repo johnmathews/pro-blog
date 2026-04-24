@@ -61,7 +61,7 @@ export default function Table({ columns, data, isPaginated = true }) {
       <div className="flex justify-between align-middle">
         <div> Page Views</div>
         <input
-          className="mr-0 rounded-sm border border-gray-700 dark:border-gray-500 "
+          className="mr-0 rounded-sm border border-gray-700 dark:border-gray-500"
           value={filterInput}
           onChange={handleFilterChange}
           placeholder={' Page name filter'}

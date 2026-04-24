@@ -13,7 +13,7 @@ const Modal = () => {
         <div
           id="keyboardShortcutsModalincludingBackground"
           style={{ backgroundColor: bgOpacity }}
-          className="fixed left-0 top-0 flex h-screen w-full items-center bg-gray-100 "
+          className="fixed top-0 left-0 flex h-screen w-full items-center bg-gray-100"
         >
           <div
             id="centralBox"
@@ -26,12 +26,12 @@ const Modal = () => {
             {Object.keys(keyboardShortcutsMenuItems).map((heading) => {
               return (
                 <div key={heading}>
-                  <h2 className="text-lg font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-900 sm:text-xl sm:leading-10 md:text-2xl md:leading-14">
+                  <h2 className="text-lg leading-9 font-extrabold tracking-tight text-gray-900 sm:text-xl sm:leading-10 md:text-2xl md:leading-14 dark:text-gray-900">
                     {heading}
                   </h2>
                   {keyboardShortcutsMenuItems[heading].map((item) => (
                     <div key={item.item} className="flex text-gray-800">
-                      <div className="mr-2  rounded-lg border-2 bg-gray-400 px-2 ">{item.item}</div>
+                      <div className="mr-2 rounded-lg border-2 bg-gray-400 px-2">{item.item}</div>
                       <span>{item.description}</span>
                     </div>
                   ))}

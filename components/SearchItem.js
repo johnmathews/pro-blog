@@ -19,12 +19,12 @@ export default function SearchItem({ hit, components }) {
     date = ''
   }
   return (
-    <a id="searchResultCandidate" className="mx-1 " href={`/blog/${hit.objectID}`}>
-      <div className="flex ">
+    <a id="searchResultCandidate" className="mx-1" href={`/blog/${hit.objectID}`}>
+      <div className="flex">
         <div className="grow align-middle text-xl">
           <components.Highlight hit={hit} attribute="title" />
         </div>
-        <div className="my-auto mr-5 flex-none text-sm font-normal uppercase italic text-gray-700">
+        <div className="my-auto mr-5 flex-none text-sm font-normal text-gray-700 uppercase italic">
           {catString}
         </div>
         <div className="my-auto mr-2 flex-none text-lg font-bold text-gray-700">{date}</div>

@@ -7,15 +7,13 @@ import Link from './Link'
 const PhotoCard = ({ title, imgSrc, href, index }) => {
   const [state, _] = useContext(AppContext)
   return (
-    <div className="md p-4 md:w-1/2 " style={{ maxWidth: '544px' }}>
+    <div className="md p-4 md:w-1/2" style={{ maxWidth: '544px' }}>
       <div
         className={` ${
           state.keyboardMode && state.listPosition == index
-            ? 'viewable border-blue-500 dark:border-blue-500 '
-            : ' border-gray-200  dark:border-gray-700'
-        }
-      overflow-hidden rounded-md border-4 border-opacity-60 bg-slate-200  dark:bg-slate-700
-     `}
+            ? 'viewable border-blue-500 dark:border-blue-500'
+            : 'border-gray-200 dark:border-gray-700'
+        } border-opacity-60 overflow-hidden rounded-md border-4 bg-slate-200 dark:bg-slate-700`}
       >
         {imgSrc &&
           (href ? (
@@ -38,7 +36,7 @@ const PhotoCard = ({ title, imgSrc, href, index }) => {
             />
           ))}
         <div className="bg-slate-200 pb-2 pl-3 dark:bg-slate-700">
-          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+          <h2 className="text-2xl leading-8 font-bold tracking-tight">
             {href ? (
               <Link
                 href={href}

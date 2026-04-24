@@ -26,16 +26,16 @@ const LayoutWrapper = ({ children }) => {
       <div id="sidebarBottomSection" className="hidden items-center text-base leading-5 md:block">
         <div
           id="sideBarDivider"
-          className="my-8 border-t-4 border-double border-gray-800 dark:border-gray-100 2xl:my-10"
+          className="my-8 border-t-4 border-double border-gray-800 2xl:my-10 dark:border-gray-100"
         ></div>
 
         <div className="md:block">
-          <div className="flex flex-col  ">
+          <div className="flex flex-col">
             <div className="text-md mb-3">
-              <dt className="mb-1 flex text-left text-gray-900 dark:text-gray-100 md:flex-col">
+              <dt className="mb-1 flex text-left text-gray-900 md:flex-col dark:text-gray-100">
                 Category:
               </dt>
-              <dd className="flex text-left text-gray-900 hover:underline dark:text-gray-100 md:flex-col">
+              <dd className="flex text-left text-gray-900 hover:underline md:flex-col dark:text-gray-100">
                 {postMetaData.category.map((cat) => {
                   return <Category key={cat} text={cat} />
                 })}
@@ -43,7 +43,7 @@ const LayoutWrapper = ({ children }) => {
             </div>
 
             {(postMetaData.next || postMetaData.prev) && (
-              <div className="mb-3 mt-3 flex w-44 flex-col justify-between text-gray-900 dark:text-gray-100 lg:block">
+              <div className="mt-3 mb-3 flex w-44 flex-col justify-between text-gray-900 lg:block dark:text-gray-100">
                 {postMetaData.prev && (
                   <div className="mb-3">
                     <div className="mb-1"> Previous: </div>
@@ -93,7 +93,7 @@ const LayoutWrapper = ({ children }) => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="my-1 flex py-1 text-left text-lg text-gray-900 hover:underline dark:text-gray-100 md:flex-col 2xl:my-2"
+                  className="my-1 flex py-1 text-left text-lg text-gray-900 hover:underline md:flex-col 2xl:my-2 dark:text-gray-100"
                 >
                   {link.title}
                 </Link>
@@ -102,14 +102,14 @@ const LayoutWrapper = ({ children }) => {
               <div id="autoCompleteComponentWrapper" className="mt-5">
                 <Autocomplete />
               </div>
-              <div className="-ml-2 mt-2 text-left">
+              <div className="mt-2 -ml-2 text-left">
                 <ThemeSwitch />
               </div>
 
               {bottomSection}
             </div>
           </div>
-          <main id="mainWrapper" className="flex-auto lg:ml-12 2xl:ml-28 2xl:mr-36">
+          <main id="mainWrapper" className="flex-auto lg:ml-12 2xl:mr-36 2xl:ml-28">
             {children}
           </main>
         </div>

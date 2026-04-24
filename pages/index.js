@@ -28,8 +28,8 @@ export default function Home() {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <div id="centerer" className="mx-auto flex h-screen w-4/5 flex-col md:flex-row 2xl:w-3/5 ">
-        <div className="mx-auto mb-12 mt-32 flex content-center md:hidden ">
+      <div id="centerer" className="mx-auto flex h-screen w-4/5 flex-col md:flex-row 2xl:w-3/5">
+        <div className="mx-auto mt-32 mb-12 flex content-center md:hidden">
           <div className="md:hidden">
             <MobileNav />
           </div>
@@ -37,23 +37,23 @@ export default function Home() {
 
         <div
           id="landingListColumn"
-          className="mx-auto my-auto hidden content-center font-serif text-xl leading-relaxed dark:text-gray-200 md:block md:leading-normal lg:text-3xl"
+          className="mx-auto my-auto hidden content-center font-serif text-xl leading-relaxed md:block md:leading-normal lg:text-3xl dark:text-gray-200"
         >
           <ul id="primaryList" className="my-3 text-left">
             {headerNavLinks.map((link) => (
               <li key={link.title} className="my-5">
                 <Link
                   href={link.href}
-                  className="font-normal text-gray-700 hover:underline dark:text-gray-200 "
+                  className="font-normal text-gray-700 hover:underline dark:text-gray-200"
                 >
                   {link.title}
                 </Link>
               </li>
             ))}
-            <li className="-ml-20 mt-10 pl-1">
+            <li className="mt-10 -ml-20 pl-1">
               <Autocomplete />
             </li>
-            <li className="-ml-3 mt-4 font-normal text-gray-700 hover:underline dark:text-gray-200 ">
+            <li className="mt-4 -ml-3 font-normal text-gray-700 hover:underline dark:text-gray-200">
               <ThemeSwitch />
             </li>
           </ul>

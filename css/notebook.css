@@ -1,11 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@reference "tailwindcss";
 
 #notebookWrapper {
 }
 #notebookWrapper .p {
-  @apply my-0 !important;
+  @apply !my-0;
 }
 /* keep this, otherwise a gutter is created */
 .notebook .hidden {
@@ -13,76 +11,76 @@
 }
 
 #notebookWrapper h3 {
-  @apply text-2xl !important;
+  @apply !text-2xl;
 }
 
 /* reset input blocks to remove built-in arbitrary and small margins, padding and border */
 #notebookWrapper [class^='input-'] {
-  @apply my-0 border-0 py-0 pl-0 !important;
+  @apply !my-0 !border-0 !py-0 !pl-0;
 }
 
 #notebookWrapper [class^='input-'] p {
-  @apply my-0 !important;
+  @apply !my-0;
 }
 
 #notebookWrapper [class^='input-'] div {
-  @apply w-full !important;
+  @apply !w-full;
 }
 
 #notebookWrapper [class^='input-'] li {
-  @apply my-0 !important;
+  @apply !my-0;
 }
 
 #notebookWrapper [class^='input-'] li p {
-  @apply my-0 !important;
+  @apply !my-0;
 }
 
 /* reset output blocks to remove built-in arbitrary and small margins, padding, and border */
 #notebookWrapper .output-block {
-  @apply m-0 border-0 p-0 !important;
+  @apply !m-0 !border-0 !p-0;
 }
 
 #notebookWrapper .output-block div {
-  @apply w-full !important;
+  @apply !w-full;
 }
 
 #notebookWrapper div pre {
-  @apply mx-0 my-5 px-0  !important;
+  @apply !mx-0 !my-5 !px-0;
 }
 
 /* #notebookWrapper pre code span:first-child { */
-/*   @apply pl-3 !important; */
+/*   @apply !pl-3; */
 /* } */
 /* #notebookWrapper pre code span { */
-/*   @apply pl-2 !important; */
+/*   @apply !pl-2; */
 /* } */
 
 #notebookWrapper [class^='input-'] pre {
-  @apply bg-slate-200 pl-5 dark:bg-slate-700 !important;
+  @apply !bg-slate-200 !pl-5 dark:!bg-slate-700;
 }
 #notebookWrapper [class^='input-'] span {
-  @apply text-blue-700  dark:text-slate-100;
+  @apply text-blue-700 dark:text-slate-100;
 }
 #notebookWrapper [class^='output'] pre {
-  @apply bg-slate-300 pl-5 dark:bg-slate-800 !important;
+  @apply !bg-slate-300 !pl-5 dark:!bg-slate-800;
 }
 
 #notebookWrapper table {
-  @apply mb-10 mt-3 !important;
+  @apply !mt-3 !mb-10;
 }
 
 #notebookWrapper table th {
-  @apply px-3 !important;
+  @apply !px-3;
 }
 
 #notebookWrapper img {
-  @apply w-full !important;
+  @apply !w-full;
 }
 
 #notebookWrapper .output-block span {
-  @apply font-mono text-lg text-gray-800 dark:text-gray-200 !important;
+  @apply !font-mono !text-lg !text-gray-800 dark:!text-gray-200;
 }
 
 #notebookWrapper code {
-  @apply bg-slate-200 text-gray-800 dark:bg-slate-700 dark:text-gray-200 !important;
+  @apply !bg-slate-200 !text-gray-800 dark:!bg-slate-700 dark:!text-gray-200;
 }

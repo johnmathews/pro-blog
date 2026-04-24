@@ -8,7 +8,7 @@ import 'katex/dist/katex.css'
 // state management in React and Next.js
 // https://www.smashingmagazine.com/2021/08/state-management-nextjs/
 
-import '@fontsource/inter/variable-full.css'
+import '@fontsource/inter/index.css'
 
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'

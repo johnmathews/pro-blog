@@ -1,6 +1,6 @@
 import { autocomplete } from '@algolia/autocomplete-js'
 import React, { createElement, Fragment, useEffect, useRef } from 'react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { useRouter } from 'next/router'
 
 import SearchItem from '@/components/SearchItem'
@@ -62,7 +62,7 @@ export default function Autocomplete(props) {
         // panel: "bg-green-500",
         // root: "bg-gray-900", // this is the box you click on, maybe
       },
-      renderer: { createElement, Fragment, render },
+      renderer: { createElement, Fragment, render: createRoot },
       // number of search results
       getSources() {
         return [

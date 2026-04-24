@@ -8,7 +8,7 @@ const ParentCategory = ({ catName, structuredCategories }) => {
 
   return (
     <div key={catName}>
-      <div className="my-3 text-2xl font-bold capitalize text-gray-900 dark:text-gray-100 ">
+      <div className="my-3 text-2xl font-bold text-gray-900 capitalize dark:text-gray-100">
         {niceCategory}
       </div>
 

@@ -9,7 +9,6 @@ const headerNavLinks: HeaderNavItem[] = [
   { href: '/snippets', title: 'Snippets' },
   { href: '/metrics', title: 'Metrics' },
   { href: '/about', title: 'About' },
-  { href: '/chat', title: 'Chat' },
 ]
 
 export default headerNavLinks
