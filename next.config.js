@@ -5,13 +5,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app platform.twitter.com ;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app platform.twitter.com va.vercel-scripts.com ;
   style-src 'self' 'unsafe-inline' fonts.googleapis.com ;
   img-src * blob: data:;
   media-src 'none';
   connect-src *;
   font-src 'self' fonts.gstatic.com;
-  frame-src giscus.app www.youtube.com youtube.com flagscdn.com read.amazon.com platform.twitter.com configure.zsa.io; 
+  frame-src giscus.app www.youtube.com youtube.com flagscdn.com read.amazon.com platform.twitter.com configure.zsa.io;
 `
 
 const securityHeaders = [
@@ -80,8 +80,11 @@ module.exports = withBundleAnalyzer({
       { source: '/longform', destination: '/collections', permanent: true },
       { source: '/photographs', destination: '/collections', permanent: true },
       { source: '/sport', destination: '/collections', permanent: true },
+      { source: '/chat', destination: '/', permanent: true },
     ]
   },
+  serverExternalPackages: ['mdx-bundler', 'esbuild'],
+  outputFileTracingRoot: __dirname,
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   eslint: {
@@ -96,21 +99,19 @@ module.exports = withBundleAnalyzer({
     ]
   },
   images: { domains: ['picsum.photos', 'flagcdn.com'], formats: ['image/avif', 'image/webp'] },
-  webpack: (config, { dev, isServer }) => {
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
+  webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
     })
-
-    if (!dev && !isServer) {
-      // Replace React with Preact only in client production build
-      Object.assign(config.resolve.alias, {
-        'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
-        react: 'preact/compat',
-        'react-dom/test-utils': 'preact/test-utils',
-        'react-dom': 'preact/compat',
-      })
-    }
 
     return config
   },

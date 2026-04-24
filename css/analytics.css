@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@reference "tailwindcss";
 
 /* pagination */
 #viewsPerPagePerDay #pagination {
@@ -38,8 +36,8 @@
 }
 /* rows */
 #viewsPerPagePerDay table tr {
-  @apply mx-3 border border-slate-500 bg-white  text-gray-800 dark:border dark:border-gray-300 dark:bg-gray-900 dark:text-gray-200;
+  @apply mx-3 border border-slate-500 bg-white text-gray-800 dark:border dark:border-gray-300 dark:bg-gray-900 dark:text-gray-200;
 }
 #viewsPerPagePerDay table tr td {
-  @apply border border-slate-500  p-2 dark:border-gray-300;
+  @apply border border-slate-500 p-2 dark:border-gray-300;
 }

@@ -25,13 +25,13 @@ export default function PostLayout({ frontMatter, authorDetails, children }) {
     PostImage = (
       <div
         id="postImage-wrapper"
-        className="relative -mt-12 mb-5 h-64 w-full sm:w-postHeaderImageWrappersm md:mb-16 md:h-96 md:w-postHeaderImageWrappermd lg:ml-0 lg:w-postHeaderImageWrapperlg xl:h-postHeaderImage xl:w-postHeaderImageWrapperxl 2xl:-mt-8 2xl:w-postHeaderImageWrapper2xl 3xl:w-postHeaderImageWrapper3xl"
+        className="sm:w-postHeaderImageWrappersm md:w-postHeaderImageWrappermd lg:w-postHeaderImageWrapperlg xl:h-postHeaderImage xl:w-postHeaderImageWrapperxl 2xl:w-postHeaderImageWrapper2xl 3xl:w-postHeaderImageWrapper3xl relative -mt-12 mb-5 h-64 w-full md:mb-16 md:h-96 lg:ml-0 2xl:-mt-8"
       >
         <Image
           src={frontMatter.image}
           alt={frontMatter.title}
-          layout="fill"
-          objectFit={'contain'}
+          fill
+          style={{ objectFit: 'contain' }}
         />
       </div>
     )
@@ -84,7 +84,7 @@ export default function PostLayout({ frontMatter, authorDetails, children }) {
 
   return (
     <>
-      <div id="sectionContainerWrapsFooter" className="mt-5 md:px-4 lg:mt-0 xl:px-0 ">
+      <div id="sectionContainerWrapsFooter" className="mt-5 md:px-4 lg:mt-0 xl:px-0">
         <div
           id="layoutWrapperDoesntWrapFooter"
           className="min-h-screen justify-between md:flex md:flex-col"
@@ -101,11 +101,11 @@ export default function PostLayout({ frontMatter, authorDetails, children }) {
                 <header className="pt-0 2xl:mb-12">
                   {PostImage}
                   <div className="space-y-1 text-center">
-                    <div className="2xl:mt-10 3xl:mt-20">
+                    <div className="3xl:mt-20 2xl:mt-10">
                       <PageTitle>{title}</PageTitle>
                     </div>
                   </div>
-                  <div className="mt-12 font-serif text-lg font-semibold text-gray-600 dark:text-gray-200 lg:text-2xl ">
+                  <div className="mt-12 font-serif text-lg font-semibold text-gray-600 lg:text-2xl dark:text-gray-200">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                     </time>
@@ -117,19 +117,19 @@ export default function PostLayout({ frontMatter, authorDetails, children }) {
                   style={{ gridTemplateRows: 'auto 1fr' }}
                 >
                   <div className="xl:col-span-3 xl:row-span-2 xl:pb-0">
-                    <div id="content" className="prose-lg max-w-none pb-8 pt-10">
+                    <div id="content" className="prose-lg max-w-none pt-10 pb-8">
                       {PostDescription}
                       {getContent(frontMatter, children)}
                     </div>
                   </div>
                   <footer className="">
                     <div className="pt-4 xl:pt-8">
-                      <Link
+                      <button
                         className="text-lg font-semibold text-blue-700 hover:underline dark:text-blue-300"
-                        href="#"
+                        onClick={() => router.back()}
                       >
-                        <a onClick={() => router.back()}>← Go back</a>
-                      </Link>{' '}
+                        ← Go back
+                      </button>{' '}
                     </div>
                   </footer>
                 </div>

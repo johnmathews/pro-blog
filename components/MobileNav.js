@@ -25,11 +25,11 @@ const MobileNav = () => {
   }
 
   return (
-    <div id="MobileNav" className="top-16 z-50 mb-3 mt-3 pb-3 text-right">
+    <div id="MobileNav" className="top-16 z-50 mt-3 mb-3 pb-3 text-right">
       <button
         type="button"
         id="openNav"
-        className="ml-1 mr-1 h-8 w-8 rounded py-1"
+        className="mr-1 ml-1 h-8 w-8 rounded py-1"
         aria-label="Toggle Menu"
         onClick={onToggleNav}
       >
@@ -47,7 +47,7 @@ const MobileNav = () => {
         </svg>
       </button>
       <div
-        className={`fixed left-0 top-0 z-20 min-h-screen w-full transform overflow-auto bg-gray-200 opacity-100 duration-300 ease-in-out dark:bg-slate-900 ${
+        className={`fixed top-0 left-0 z-20 min-h-screen w-full transform overflow-auto bg-gray-200 opacity-100 duration-300 ease-in-out dark:bg-slate-900 ${
           navShow ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -55,7 +55,7 @@ const MobileNav = () => {
           <button
             type="button"
             id="closeNav"
-            className="mr-8 mt-12 h-8 w-8 rounded"
+            className="mt-12 mr-8 h-8 w-8 rounded"
             aria-label="Toggle Menu"
             onClick={onToggleNav}
           >
@@ -92,7 +92,7 @@ const MobileNav = () => {
 
           <div
             id="AutoCompleteWrapper"
-            className="text-right text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100 "
+            className="text-right text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
           >
             <Autocomplete />
           </div>

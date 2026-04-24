@@ -15,9 +15,9 @@ const PostsInYear = ({ year, posts, filterSnippets = true }) => {
       return (
         <li
           key={slug}
-          className={`text-normal mb-5 px-1  hover:underline lg:mb-6 ${
+          className={`text-normal mb-5 px-1 hover:underline lg:mb-6 ${
             state.keyboardMode && state.listPosition == index
-              ? '-ml-1 -mr-1 rounded-md border-2 border-slate-400 bg-blue-200 px-2 dark:border-slate-300 dark:bg-blue-600'
+              ? '-mr-1 -ml-1 rounded-md border-2 border-slate-400 bg-blue-200 px-2 dark:border-slate-300 dark:bg-blue-600'
               : null
           } viewable index-${index}`}
         >
@@ -37,7 +37,7 @@ const PostsInYear = ({ year, posts, filterSnippets = true }) => {
 
             <div
               id="dateBox"
-              className="hidden flex-none text-right font-serif text-xl font-semibold leading-6 text-gray-600 dark:text-gray-300 md:block 2xl:text-2xl "
+              className="hidden flex-none text-right font-serif text-xl leading-6 font-semibold text-gray-600 md:block 2xl:text-2xl dark:text-gray-300"
             >
               <time dateTime={date}>{formatDate(date)}</time>
             </div>

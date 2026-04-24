@@ -29,7 +29,6 @@ const menuItems: KeyboardShortcuts = {
     { item: 'ce', description: 'Engineering' },
     { item: 'ga', description: 'About' },
     { item: 'go', description: 'Collections' },
-    { item: 'gc', description: 'Chat' },
     { item: 'ge', description: 'Experience' },
     { item: 'gi', description: 'Blog index' },
     { item: 'gp', description: 'Projects' },

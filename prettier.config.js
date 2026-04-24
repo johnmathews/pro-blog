@@ -8,5 +8,5 @@ module.exports = {
   trailingComma: 'es5',
   bracketSpacing: true,
   endOfLine: 'auto',
-  plugins: [require('prettier-plugin-tailwindcss')],
+  plugins: ['prettier-plugin-tailwindcss'],
 }

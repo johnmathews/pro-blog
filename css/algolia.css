@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@reference "tailwindcss";
 
 /* https://www.algolia.com/doc/ui-libraries/autocomplete/api-reference/autocomplete-theme-classic/#css-variables */
 
@@ -17,15 +15,15 @@
 }
 
 [id^='autocomplete-4-item-'] {
-  @apply my-5  !important;
+  @apply !my-5;
 }
 
 .aa-Item {
-  @apply rounded-xl border-2 border-slate-800 !important;
+  @apply !rounded-xl !border-2 !border-slate-800;
 }
 
 .aa-ClearIcon {
-  @apply -mr-3 !important;
+  @apply !-mr-3;
 }
 
 .aa-SubmitIcon {
@@ -40,11 +38,11 @@
 }
 
 .aa-DetachedSearchButtonIcon {
-  @apply hidden !important;
+  @apply !hidden;
 }
 
 .aa-DetachedSearchButton {
-  @apply border-0 bg-gray-100 px-0 text-lg text-gray-800 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100 !important;
+  @apply !border-0 !bg-gray-100 !px-0 !text-lg !text-gray-800 dark:!border-gray-900 dark:!bg-gray-800 dark:!text-gray-100;
 }
 
 /* SIDEBAR OF LIST PAGES AND BLOG PAGES */
@@ -61,7 +59,7 @@
 /* MOBILE NAV */
 
 #mobileNavLinks .aa-DetachedSearchButton {
-  @apply mx-12 bg-gray-200 dark:bg-slate-900 !important;
+  @apply !mx-12 !bg-gray-200 dark:!bg-slate-900;
 }
 #mobileNavLinks .aa-DetachedSearchButtonPlaceholder {
   @apply text-2xl;
@@ -77,11 +75,11 @@
 /* LANDING PAGE SEARCH TEXT */
 /* the icon disapears in dark mode */
 #landingListColumn .aa-AutoComplete {
-  @apply text-xl hover:underline dark:text-gray-100 lg:text-3xl;
+  @apply text-xl hover:underline lg:text-3xl dark:text-gray-100;
 }
 #landingListColumn .aa-DetachedSearchButton {
   @apply mx-auto w-32 dark:w-24;
 }
 #landingListColumn .aa-DetachedSearchButtonPlaceholder {
-  @apply mx-auto text-center text-xl text-gray-900 hover:underline dark:text-gray-100  lg:text-3xl;
+  @apply mx-auto text-center text-xl text-gray-900 hover:underline lg:text-3xl dark:text-gray-100;
 }

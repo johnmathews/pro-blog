@@ -4,7 +4,7 @@ const Category = ({ text }) => {
   const categoryString = text.replace('.', '/').toLowerCase()
   const childCat = text.split('.').pop()
   return (
-    <Link href={`/categories/${categoryString}`} className="capitalize leading-tight">
+    <Link href={`/categories/${categoryString}`} className="leading-tight capitalize">
       {childCat.toLowerCase()}
     </Link>
   )

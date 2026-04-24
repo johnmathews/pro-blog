@@ -3,7 +3,7 @@ import PageTitle from '@/components/PageTitle'
 import { MDXLayoutRenderer } from '@/components/MDXComponents'
 import { formatSlug, getAllFilesFrontMatter, getFileBySlug, getFiles } from '@/lib/mdx'
 
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { AppContext } from '@/components/ContextProvider'
 
@@ -70,7 +70,7 @@ export default function Blog({ post, authorDetails, prev, next }) {
   const { image } = frontMatter
 
   const [_, dispatch] = useContext(AppContext)
-  const postMetaData = { ...frontMatter, prev, next }
+  const postMetaData = useMemo(() => ({ ...frontMatter, prev, next }), [frontMatter, prev, next])
 
   const router = useRouter()
 
@@ -79,7 +79,7 @@ export default function Blog({ post, authorDetails, prev, next }) {
       type: 'BLOG_POST',
       frontMatter: postMetaData,
     })
-  }, [router, dispatch, postMetaData])
+  }, [dispatch, postMetaData])
 
   return (
     <>

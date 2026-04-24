@@ -47,3 +47,4 @@ yarn-error.log*
 
 # jupyter notebooks
 public/notebooks/.ipynb_checkpoints/
+.playwright-mcp/
