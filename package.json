@@ -33,7 +33,7 @@
     "algoliasearch": "^4.27.0",
     "builtin-modules": "^5.1.0",
     "dotenv": "^16.6.0",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.28.1",
     "fuse.js": "^7.0.0",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
@@ -90,7 +90,7 @@
     "source-map-loader": "^5.0.0",
     "ts-loader": "^9.5.0",
     "ts-node": "^10.9.1",
-    "tsx": "^4.0.0",
+    "tsx": "^4.22.4",
     "typescript": "^5.0.0",
     "vitest": "^4.1.5"
   },
